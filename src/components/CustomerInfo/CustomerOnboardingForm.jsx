@@ -1,0 +1,124 @@
+import React, { useState } from "react";
+
+const CustomerOnboardingForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    phone: "",
+    email: "",
+    city: "",
+    past_medical_history: "",
+    date_of_birth: "",
+    blood_group: "",
+    gender: "",
+    old_diseases: "",
+    whatsapp_number: "",
+    weight: "",
+    height: "",
+    allergies: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Send a POST request to API
+    console.log("Customer Data:", formData);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Customer Onboarding</h2>
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="text"
+        name="address"
+        placeholder="Address"
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="text"
+        name="phone"
+        placeholder="Phone"
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="text"
+        name="city"
+        placeholder="City"
+        onChange={handleChange}
+        required
+      />
+      <textarea
+        name="past_medical_history"
+        placeholder="Past Medical History"
+        onChange={handleChange}
+      />
+      <input type="date" name="date_of_birth" onChange={handleChange} />
+      <input
+        type="text"
+        name="blood_group"
+        placeholder="Blood Group"
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        name="gender"
+        placeholder="Gender"
+        onChange={handleChange}
+      />
+      <textarea
+        name="old_diseases"
+        placeholder="Old Diseases"
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        name="whatsapp_number"
+        placeholder="WhatsApp Number"
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        name="weight"
+        placeholder="Weight"
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        name="height"
+        placeholder="Height"
+        onChange={handleChange}
+      />
+      <textarea
+        name="allergies"
+        placeholder="Allergies"
+        onChange={handleChange}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default CustomerOnboardingForm;

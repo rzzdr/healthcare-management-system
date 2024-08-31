@@ -1,0 +1,103 @@
+body{
+  background-color: rgb(250, 249, 249);
+  text-align: center;
+}
+.conatiner{
+  background-color: rgba(246, 246, 245, 0.886);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  transition: transform 0.2s;
+  width: 500px;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+
+}
+h1{
+  font-size: x-large;
+
+}
+label{
+  font-size: 15px;
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 5px;
+  text-align: left;
+  color: #3f3e3e;
+  font-weight: bold;
+}
+input{
+  display: block;
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 12px;
+}
+input[type="radio"]{
+  display: inline;
+  width: 10%;
+}
+button{
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin: 15px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  background-color: blue;
+  width: 50%;
+  font-size: 20px;
+}
+button:hover{
+  background-color: #2b036c;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 80%;
+    max-width: 500px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  label {
+    font-size: 1.1rem;
+  }
+
+  input {
+    font-size: 1.1rem;
+  }
+
+  button {
+    width: 50%;
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    width: 60%;
+    max-width: 600px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  label {
+    font-size: 1.2rem;
+  }
+
+  input {
+    font-size: 1.2rem;
+  }
+
+  button {
+    width: 40%;
+    font-size: 1.4rem;
+  }
+}
