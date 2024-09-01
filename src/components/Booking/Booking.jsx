@@ -26,16 +26,18 @@ function Booking() {
         e.preventDefault()
         const requestData = {
           customer_map_id: values.customer_map_id, // Replace with actual customer ID
-          time: values.time,
+            time_slot: values.time,
           date: new Date().toISOString(), // Current date and time
           remarks: values.remarks,
           name: values.booktest,
           amount: parseFloat(values.amount),
-          payment_mode: values.payment_mode, // Replace with actual payment mode if needed
+          payment_mode: values.payment_mode,
+            status: "hello"// Replace with actual payment mode if needed
         };
 
         try {
             const idToken = await auth.currentUser?.getIdToken();
+            console.log(requestData)
             const response = await fetch(BASE_URL + '/customers/create-appointment/', {
                 method: 'POST',
                 headers: {
@@ -145,34 +147,6 @@ function Booking() {
 
           <button type="submit">Submit</button>
         </form>
-        {bookingInfo && (
-          <div className="booking-info">
-            <h2>Booking Information</h2>
-            <p>
-              <strong>Customer ID:</strong> {bookingInfo.customer_map_id}
-            </p>
-            <p>
-              <strong>Date:</strong>{" "}
-              {new Date(bookingInfo.date).toLocaleDateString()}
-            </p>
-            <p>
-              <strong>Time:</strong>{" "}
-              {new Date(
-                `1970-01-01T${bookingInfo.time}:00`
-              ).toLocaleTimeString()}
-            </p>
-            <p>
-              <strong>Test Name:</strong> {bookingInfo.name}
-            </p>
-            <p>
-              <strong>Amount Paid:</strong> ₹{bookingInfo.amount}
-            </p>
-            <p>
-              <strong>Payment Mode:</strong> {bookingInfo.payment_mode}
-            </p>
-            {/* Add more fields as needed */}
-          </div>
-        )}
       </div>
     );
 }

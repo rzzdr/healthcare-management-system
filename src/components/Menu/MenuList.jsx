@@ -21,13 +21,6 @@ const MenuList = () => {
             <li className="menu--list-item">
                 <Link to={"/booking"}><IoMdTime/>BOOK TEST/APPOINTMENT</Link>
             </li>
-            <li className="menu--list-item">
-                <Link to={"/hospitalonboardingform"}>HOSPITAL ONBOARDING</Link>
-            </li>
-
-            <li className="menu--list-item">
-                <Link to={"chatbot"}><IoMdStats/>REPORTS</Link>
-            </li>
 
             <li className="menu--list-item">
                 <Link to={"/logout"}><IoMdLogIn/>LOG OUT</Link>
