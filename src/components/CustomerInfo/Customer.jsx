@@ -3,6 +3,8 @@ import CustomerOnboardingForm from "./CustomerOnboardingForm";
 import CustomerInfo from "./CustomerInfo";
 import "./Customer.css";
 
+const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
+
 const CustomerOptions = () => {
   const [activeSection, setActiveSection] = useState("form");
   const [customer, setCustomer] = useState(null);
@@ -16,9 +18,14 @@ const CustomerOptions = () => {
   useEffect(() => {
     const fetchCustomerData = async () => {
       try {
-        const response = await fetch(
-          "https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io/api/customers/${customerId}"
-        );
+        const idToken = await auth.currentUser?.getIdToken();
+        const response = await fetch(`${BASE_URL}/customers/get-customers/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${idToken}`
+          }
+        });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
