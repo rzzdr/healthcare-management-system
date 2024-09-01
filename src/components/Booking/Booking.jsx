@@ -7,19 +7,15 @@ const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azure
 function Booking() {
     const [values, setValues] = useState({
       customer_map_id: "",
-      firstname: "",
-      lastname: "",
-      contact: "",
-      gender: "",
-      appointment: "",
-      booktest: "",
+      date: "",
       time: "",
-      amount: "",
       remarks: "",
+      booktest: "",
+      amount: "",
       payment_mode: "",
     });
     const [bookingInfo, setBookingInfo] = useState(null);
-    const handlechanges = (e) => {
+    const handleChanges = (e) => {
         if (e.target.type === 'radio') {
             setValues({...values, [e.target.name]: e.target.value});
         } else {
@@ -30,11 +26,10 @@ function Booking() {
         e.preventDefault()
         const requestData = {
           customer_map_id: values.customer_map_id, // Replace with actual customer ID
-          time_slot: values.time,
+          time: values.time,
           date: new Date().toISOString(), // Current date and time
-          remarks: "", // Add remarks if needed
-          status: "Pending", // Set default status
-          name: `${values.firstname} ${values.lastname}`,
+          remarks: values.remarks,
+          name: values.booktest,
           amount: parseFloat(values.amount),
           payment_mode: values.payment_mode, // Replace with actual payment mode if needed
         };
@@ -91,111 +86,83 @@ function Booking() {
       <div className="conatiner">
         <h1>BOOK TEST/APPOINTMENT</h1>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="customer_map_id">Customer ID</label>
+          <label htmlFor="customer_map_id">Customer ID*</label>
           <input
             type="text"
             placeholder="Enter Customer ID"
             name="customer_map_id"
-            onChange={handlechanges}
-          />
-          <label htmlFor="firstname">First Name*</label>
-          <input
-            type="text"
-            placeholder="Enter First Name"
-            name="firstname"
-            onChange={(e) => handlechanges(e)}
+            onChange={(e) => handleChanges(e)}
             required
           />
-          <label htmlFor="lastname">Last Name*</label>
+
+          <label htmlFor="date">Date*</label>
           <input
-            type="text"
-            placeholder="Enter Last Name"
-            name="lastname"
-            onChange={(e) => handlechanges(e)}
-          />
-          <label htmlFor="contact">Contact Number</label>
-          <input
-            type="text"
-            placeholder="Enter Contact Number"
-            name="contact"
-            onChange={(e) => handlechanges(e)}
+            type="date"
+            name="date"
+            onChange={(e) => handleChanges(e)}
             required
           />
-          <label htmlFor="gender">Gender</label>
-          <input
-            type="radio"
-            name="gender"
-            onChange={(e) => handlechanges(e)}
-          />{" "}
-          Male
-          <input
-            type="radio"
-            name="gender"
-            onChange={(e) => handlechanges(e)}
-          />{" "}
-          Female
-          <input
-            type="radio"
-            name="gender"
-            onChange={(e) => handlechanges(e)}
-          />{" "}
-          Other
-          <label htmlFor="appointment">Appointment</label>
-          <input
-            type="text"
-            placeholder="Enter Appointment"
-            name="appointment"
-            onChange={(e) => handlechanges(e)}
-          />
-          <label htmlFor="booktest">Test Name</label>
-          <input
-            type="text"
-            placeholder="Enter the Test Name"
-            name="booktest"
-            onChange={(e) => handlechanges(e)}
-          />
-          <label htmlFor="time">Select Time</label>
+
+          <label htmlFor="time">Time*</label>
           <input
             type="time"
-            placeholder="Enter your preferred time"
             name="time"
-            onChange={(e) => handlechanges(e)}
-          />
-          <label htmlFor="amount">Amount Paid(INR)</label>
-          <input
-            type="text"
-            placeholder="Enter Amount Paid"
-            name="amount"
-            onChange={(e) => handlechanges(e)}
+            onChange={(e) => handleChanges(e)}
             required
           />
+
           <label htmlFor="remarks">Remarks</label>
           <input
             type="text"
             placeholder="Enter Remarks"
             name="remarks"
-            onChange={handlechanges}
+            onChange={(e) => handleChanges(e)}
           />
+
+          <label htmlFor="booktest">Test Name</label>
+          <input
+            type="text"
+            placeholder="Enter Test Name"
+            name="booktest"
+            onChange={(e) => handleChanges(e)}
+          />
+
+          <label htmlFor="amount">Amount Paid (INR)*</label>
+          <input
+            type="text"
+            placeholder="Enter Amount Paid"
+            name="amount"
+            onChange={(e) => handleChanges(e)}
+            required
+          />
+
           <label htmlFor="payment_mode">Payment Mode</label>
-          <select name="payment_mode" onChange={handlechanges}>
+          <select name="payment_mode" onChange={(e) => handleChanges(e)}>
             <option value="Cash">Cash</option>
             <option value="Card">Card</option>
             <option value="Online">Online</option>
           </select>
+
           <button type="button">Submit</button>
         </form>
         {bookingInfo && (
           <div className="booking-info">
             <h2>Booking Information</h2>
             <p>
-              <strong>Name:</strong> {bookingInfo.name}
+              <strong>Customer ID:</strong> {bookingInfo.customer_map_id}
             </p>
             <p>
               <strong>Date:</strong>{" "}
-              {new Date(bookingInfo.date).toLocaleString()}
+              {new Date(bookingInfo.date).toLocaleDateString()}
             </p>
             <p>
-              <strong>Time Slot:</strong> {bookingInfo.time_slot}
+              <strong>Time:</strong>{" "}
+              {new Date(
+                `1970-01-01T${bookingInfo.time}:00`
+              ).toLocaleTimeString()}
+            </p>
+            <p>
+              <strong>Test Name:</strong> {bookingInfo.name}
             </p>
             <p>
               <strong>Amount Paid:</strong> ₹{bookingInfo.amount}
