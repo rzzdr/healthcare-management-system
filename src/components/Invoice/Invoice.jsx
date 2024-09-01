@@ -4,7 +4,7 @@ import "./Invoice.css";
 import {auth} from "../Sign-In/firebaseConfig.js";
 
 const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
-const Invoice = async () => {
+const Invoice = () => {
     const [action, setAction] = useState("");
     const [customerId, setCustomerId] = useState("");
     const [paymentMode, setPaymentMode] = useState("");
@@ -59,11 +59,12 @@ const Invoice = async () => {
         };
         try {
             console.log(JSON.stringify(invoiceRequest))
+            const idToken = await auth.currentUser?.getIdToken();
             const response = await fetch(BASE_URL + '/customers/create-invoice/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjExYzhiMmRmNGM1NTlkMjhjOWRlNWQ0MTAxNDFiMzBkOWUyYmNlM2IiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiREhFRVJBSiBTSEFSTUEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS1lySjVEbmszYVlkVTZGQmJRWk93YXhGTmotS3lFSjlLQTV1YzBpZGhIMDNOS05OYz1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9hdGlzaGF5LXdvcmtzcGFjZSIsImF1ZCI6ImF0aXNoYXktd29ya3NwYWNlIiwiYXV0aF90aW1lIjoxNzI1MTg2OTg0LCJ1c2VyX2lkIjoiU2hLNWRic3BZb2VKa0J5cGRsR0FrNnN5dERXMiIsInN1YiI6IlNoSzVkYnNwWW9lSmtCeXBkbEdBazZzeXREVzIiLCJpYXQiOjE3MjUxODY5ODQsImV4cCI6MTcyNTE5MDU4NCwiZW1haWwiOiJkaGVlcmFqLnNoYXJtYS51ZzIzQG5zdXQuYWMuaW4iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjEwOTY3MDYyMTkzMDUxOTM5MzMyNyJdLCJlbWFpbCI6WyJkaGVlcmFqLnNoYXJtYS51ZzIzQG5zdXQuYWMuaW4iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJjdXN0b20ifX0.q-4Z7LWpwxfxietuOeZxjaYbWd3MW897SqHHlUDfqPKkn1IdGXq7Q3kCLXMC50Wk2MQMboFWHZYEGuTooa2fC3dDZZ19Frw63tVslt1rnlQyAKIpI8AyfPblysUCw9l5xzpKGp2JC_zNnfa311d7w-xGV5OnB0TgO2_ZcpCbmnp3V4zJkD_z6k-pfo08rlo5x_wzRNIYjWbAGthB0SdJLr-3Yivx-bLqcS-MD-eZolnzrix0D0bMKz7vM897vA_oNfxNlRuYpmsF3iHtBFBd7NMgILrXV7iwQLc9bHA6wcP_AWMbDlPyzX-V7RYKhDoK-IiurQv-z4FRAINR3U1SLA`
+                    'Authorization': `Bearer ${idToken}`
                 },
                 body: JSON.stringify(invoiceRequest),
             });
@@ -109,7 +110,7 @@ const Invoice = async () => {
     };
     useEffect(() => {
         if (action === "view") {
-            fetchInvoices(); // Fetch invoices when the view action is selected
+            fetchInvoices();
         }
     }, [action]);
 

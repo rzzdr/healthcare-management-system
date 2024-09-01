@@ -30,6 +30,7 @@ const CustomerOnboardingForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const idToken = await auth.currentUser?.getIdToken();
         try {
             const idToken = await auth.currentUser?.getIdToken();
             const response = await fetch(BASE_URL + "/customers/create-customer/", {
@@ -54,6 +55,7 @@ const CustomerOnboardingForm = () => {
     };
     useEffect(() => {
         const fetchCustomerInfo = async () => {
+            const idToken = await auth.currentUser?.getIdToken();
             try {
                 const idToken = await auth.currentUser?.getIdToken();
                 const response = await fetch(`${BASE_URL}/customers/{customer_id}/get-customer/`, {

@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import './Booking.css'
+import {auth} from "../Sign-In/firebaseConfig.js";
 
 const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
 
@@ -36,10 +37,12 @@ function Booking() {
         };
 
         try {
+            const idToken = await auth.currentUser?.getIdToken();
             const response = await fetch(BASE_URL + '/customers/create-appointment/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${idToken}`
                 },
                 body: JSON.stringify(requestData),
             });
