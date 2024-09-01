@@ -30,12 +30,13 @@ const CustomerOnboardingForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const idToken = await auth.currentUser?.getIdToken();
         try {
             const response = await fetch(BASE_URL + "/customers/create-customer/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                    "Authorization": `Bearer ${idToken}`
                 },
                 body: JSON.stringify(formData),
             });
