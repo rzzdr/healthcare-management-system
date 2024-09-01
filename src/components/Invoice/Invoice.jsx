@@ -59,7 +59,6 @@ const Invoice = () => {
     e.preventDefault();
 
     const validatedItems = items.map((item) => ({
-      //
       ...item,
       itemPrice: isNaN(item.itemPrice) ? 0 : item.itemPrice,
       quantity: isNaN(item.quantity) ? 0 : item.quantity,
