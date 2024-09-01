@@ -31,11 +31,12 @@ const CustomerOnboardingForm = () => {
         e.preventDefault();
 
         try {
+            const idToken = await auth.currentUser?.getIdToken();
             const response = await fetch(BASE_URL + "/customers/create-customer/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem('token')}`
+                    "Authorization": `Bearer ${idToken}`
                 },
                 body: JSON.stringify(formData),
             });
@@ -54,10 +55,11 @@ const CustomerOnboardingForm = () => {
     useEffect(() => {
         const fetchCustomerInfo = async () => {
             try {
+                const idToken = await auth.currentUser?.getIdToken();
                 const response = await fetch(`${BASE_URL}/customers/{customer_id}/get-customer/`, {
                     method: "GET",
                     headers: {
-                        "Authorization": `Bearer ${localStorage.getItem('token')}`
+                        "Authorization": `Bearer ${idToken}`
                     }
                 });
                 if (!response.ok) {

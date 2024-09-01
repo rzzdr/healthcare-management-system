@@ -58,8 +58,13 @@ function Booking() {
     }
     const fetchBookingInfo = async () => {
         try {
-            const response = await fetch(BASE_URL + "/customers/{invoice_id}/get-invoice/"); // Adjust the URL as needed
-
+            const idToken = await auth.currentUser?.getIdToken();
+            const response = await fetch(`${BASE_URL}/customers/{customer_id}/get-customer/`, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${idToken}`
+                }
+            });
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

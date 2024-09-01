@@ -25,10 +25,12 @@ const HospitalOnboardingForm = () => {
         e.preventDefault();
         // Send a POST request to API
         try {
+            const idToken = await auth.currentUser?.getIdToken();
             const response = await fetch(BASE_URL + '/hospital/onboard-hospital/', { // Replace with your actual endpoint
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`
                 },
                 body: JSON.stringify(formData),
             });
@@ -61,10 +63,12 @@ const HospitalOnboardingForm = () => {
     useEffect(() => {
         const fetchHospitalInfo = async () => {
             try {
+                const idToken = await auth.currentUser?.getIdToken();
                 const response = await fetch(`${BASE_URL}/hospital/get-hospital-info/`, { // Replace with your actual endpoint
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${idToken}`
                     },
                 });
 

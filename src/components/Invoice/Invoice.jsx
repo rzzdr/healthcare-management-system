@@ -83,6 +83,7 @@ const Invoice = async () => {
         }
     };
     const fetchInvoices = async () => {
+      
         try {
             const idToken = await auth.currentUser?.getIdToken();
             console.log('ID Token:', idToken);
