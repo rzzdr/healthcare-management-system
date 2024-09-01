@@ -29,7 +29,7 @@ function Booking() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const requestData = {
-          customer_map_id: values.customer_map_id,, // Replace with actual customer ID
+          customer_map_id: values.customer_map_id, // Replace with actual customer ID
           time_slot: values.time,
           date: new Date().toISOString(), // Current date and time
           remarks: "", // Add remarks if needed
