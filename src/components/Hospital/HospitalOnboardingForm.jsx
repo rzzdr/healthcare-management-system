@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useState,useEffect } from "react";
+const BASE_URL="https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io";
 const HospitalOnboardingForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -24,7 +24,7 @@ const HospitalOnboardingForm = () => {
     e.preventDefault();
     // Send a POST request to API
     try {
-      const response = await fetch('/hospital/onboard-hospital/', { // Replace with your actual endpoint
+      const response = await fetch(BASE_URL+'/hospital/onboard-hospital/', { // Replace with your actual endpoint
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,6 +57,31 @@ const HospitalOnboardingForm = () => {
       alert('Failed to onboard hospital. Please try again.');
     }
   };
+  useEffect(() => {
+    const fetchHospitalInfo = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/hospital/get-hospital-info/`, { // Replace with your actual endpoint
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setHospitalInfo(data); // Store fetched data in state
+
+      } catch (error) {
+        console.error('Error fetching hospital info:', error);
+        // Handle the error (e.g., display an error message)
+      }
+    };
+
+    fetchHospitalInfo();
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>

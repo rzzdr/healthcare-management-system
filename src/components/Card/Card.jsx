@@ -13,7 +13,7 @@ const Card=()=>{
                     <h2 className="invoice">INVOICE</h2>
                     <div className="growth">
                       <p>Total Invoices</p>
-                      <span>xyz</span>
+                      <span>1K+</span>
                     </div>
                    
                 </div>
@@ -27,8 +27,8 @@ const Card=()=>{
                 <div className="card--body">
                     <h2 className="customer">CUSTOMER</h2>
                     <div className="growth">
-                      <p>Total Invoices</p>
-                      <span>xyz</span>
+                      <p>Total Customers</p>
+                      <span>1K+</span>
                     </div>
                    
                 </div>
@@ -42,8 +42,8 @@ const Card=()=>{
                 <div className="card--body">
                     <h2 className="booking">BOOKING</h2>
                     <div className="growth">
-                      <p>Total Invoices</p>
-                      <span>xyz</span>
+                      <p>Total Bookings</p>
+                      <span>1K+</span>
                     </div>
                    
                 </div>
@@ -56,8 +56,8 @@ const Card=()=>{
                 <div className="card--body">
                     <h2 className="booking">REPORTS</h2>
                     <div className="growth">
-                      <p>Total Invoices</p>
-                      <span>xyz</span>
+                      <p>Total Reports</p>
+                      <span>1K+</span>
                     </div>
                    
                 </div>

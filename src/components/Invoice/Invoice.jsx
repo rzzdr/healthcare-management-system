@@ -28,7 +28,7 @@ const Invoice = () => {
     setPaymentMode("");
     setStatus("");
     setRemarks("");
-    setItems([{ itemName: "", itemPrice: "", quantity: "" }]);
+    setItems([{ itemName: "", itemPrice: 0, quantity: 1 }]);
   };
 
   const handleItemChange = (index, field, value) => {
@@ -38,7 +38,7 @@ const Invoice = () => {
   };
 
   const addItem = () => {
-    setItems([...items, { itemName: "", itemPrice: "", quantity: "" }]);
+    setItems([...items, { itemName: "", itemPrice: 0, quantity: 1 }]);
   };
 
   const removeItem = (index) => {
@@ -49,19 +49,19 @@ const Invoice = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const invoiceRequest = {
-      customer_id: customerId,
+      customer_map_id: customerId,
       items: items,
       payment_mode: paymentMode,
       status: status,
       remarks: remarks,
     };
     try {
-      console.log(localStorage.getItem("token"))
+      console.log(JSON.stringify(invoiceRequest))
       const response = await fetch(BASE_URL+'/customers/create-invoice/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjExYzhiMmRmNGM1NTlkMjhjOWRlNWQ0MTAxNDFiMzBkOWUyYmNlM2IiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiREhFRVJBSiBTSEFSTUEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS1lySjVEbmszYVlkVTZGQmJRWk93YXhGTmotS3lFSjlLQTV1YzBpZGhIMDNOS05OYz1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9hdGlzaGF5LXdvcmtzcGFjZSIsImF1ZCI6ImF0aXNoYXktd29ya3NwYWNlIiwiYXV0aF90aW1lIjoxNzI1MTg2OTg0LCJ1c2VyX2lkIjoiU2hLNWRic3BZb2VKa0J5cGRsR0FrNnN5dERXMiIsInN1YiI6IlNoSzVkYnNwWW9lSmtCeXBkbEdBazZzeXREVzIiLCJpYXQiOjE3MjUxODY5ODQsImV4cCI6MTcyNTE5MDU4NCwiZW1haWwiOiJkaGVlcmFqLnNoYXJtYS51ZzIzQG5zdXQuYWMuaW4iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjEwOTY3MDYyMTkzMDUxOTM5MzMyNyJdLCJlbWFpbCI6WyJkaGVlcmFqLnNoYXJtYS51ZzIzQG5zdXQuYWMuaW4iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJjdXN0b20ifX0.q-4Z7LWpwxfxietuOeZxjaYbWd3MW897SqHHlUDfqPKkn1IdGXq7Q3kCLXMC50Wk2MQMboFWHZYEGuTooa2fC3dDZZ19Frw63tVslt1rnlQyAKIpI8AyfPblysUCw9l5xzpKGp2JC_zNnfa311d7w-xGV5OnB0TgO2_ZcpCbmnp3V4zJkD_z6k-pfo08rlo5x_wzRNIYjWbAGthB0SdJLr-3Yivx-bLqcS-MD-eZolnzrix0D0bMKz7vM897vA_oNfxNlRuYpmsF3iHtBFBd7NMgILrXV7iwQLc9bHA6wcP_AWMbDlPyzX-V7RYKhDoK-IiurQv-z4FRAINR3U1SLA`
         },
         body: JSON.stringify(invoiceRequest),
       });
@@ -82,22 +82,34 @@ const Invoice = () => {
   };
   const fetchInvoices = async () => {
     try {
-      const response = await fetch('/customers/{invoice_id}/get-invoice/'); // Adjust the endpoint as needed
+      const response = await fetch(`${BASE_URL}/customers/{invoice_id}/get-invoice/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer your-token-here`
+        }
+      });
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+
       const data = await response.json();
-      setInvoices(data); // Assuming data is an array of invoices
+      setInvoices(data);
+      console.log('Fetched Invoices:', data);
     } catch (error) {
-      console.error('Error fetching invoices:', error);
+      console.error('Error:', error);
+      alert('Failed to fetch invoices. Please try again.');
     }
   };
-
   useEffect(() => {
     if (action === "view") {
-      fetchInvoices(); // Fetch invoices when viewing invoices
+      fetchInvoices(); // Fetch invoices when the view action is selected
     }
   }, [action]);
+
+  
+  
 
 
   return (
@@ -222,7 +234,21 @@ const Invoice = () => {
       {action === "view" && (
         <div className="view-invoices">
           <h3>View Invoices</h3>
-          <p>Here you can view all your invoices.</p>
+          {invoices.length > 0 ? (
+            <ul>
+              {invoices.map((invoice) => (
+                <li key={invoice.id}>
+                  <p>Customer Name: {invoice.customer_name}</p>
+                  <p>Total Amount: {invoice.total_amount}</p>
+                  <p>Status: {invoice.status}</p>
+                  <p>Payment Mode: {invoice.payment_mode}</p>
+                  {/* Display other details as needed */}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No invoices available</p>
+          )}
           {/* Display invoice listing logic goes here */}
           <button className="back-btn" onClick={handleBack}>
             Back

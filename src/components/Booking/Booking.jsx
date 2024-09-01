@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './Booking.css'
-
+const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
 function Booking() {
   const [values, setValues]=useState({
     firstname: '',
@@ -12,7 +12,7 @@ function Booking() {
     time: '',
     amount: ''
   });
-
+  const [bookingInfo, setBookingInfo] = useState(null);
   const handlechanges= (e)=>{
     if (e.target.type === 'radio') {
       setValues({ ...values, [e.target.name]: e.target.value });
@@ -23,7 +23,7 @@ function Booking() {
   const handleSubmit= async (e)=>{
     e.preventDefault()
     const requestData = {
-      customer_map_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Replace with actual customer ID
+      customer_map_id: "", // Replace with actual customer ID
       time_slot: values.time,
       date: new Date().toISOString(), // Current date and time
       remarks: "", // Add remarks if needed
@@ -34,7 +34,7 @@ function Booking() {
     };
 
     try {
-      const response = await fetch('/customers/create-appointment/', {
+      const response = await fetch(BASE_URL+'/customers/create-appointment/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,6 +54,24 @@ function Booking() {
       // Handle error (e.g., show an error message)
     }
   }
+  const fetchBookingInfo = async () => {
+    try {
+      const response = await fetch(BASE_URL+"/customers/{invoice_id}/get-invoice/"); // Adjust the URL as needed
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      setBookingInfo(data); // Store fetched data in state
+    } catch (error) {
+      console.error('Error fetching booking info:', error);
+      // Handle error (e.g., show an error message)
+    }
+  };
+  useEffect(() => {
+    fetchBookingInfo();
+  }, []);
 
   return (
     <div className='conatiner'>
@@ -61,7 +79,7 @@ function Booking() {
       <form onSubmit={handleSubmit}>
         <label htmlFor='firstname'>First Name*</label>
         <input type='text' placeholder='Enter First Name' name='firstname'
-        onChange={(e)=>handlechanges(e)} req="true"/>
+        onChange={(e)=>handlechanges(e)} required/>
 
         <label htmlFor='lastname'>Last Name*</label>
         <input type='text' placeholder='Enter Last Name' name='lastname'
@@ -69,7 +87,7 @@ function Booking() {
 
         <label htmlFor='contact'>Contact Number</label>
         <input type='text' placeholder='Enter Contact Number' name='contact'
-        onChange={(e)=>handlechanges(e)} req="true"/>
+        onChange={(e)=>handlechanges(e)} required/>
 
         <label htmlFor='gender'>Gender</label>
         <input type='radio' name='gender' onChange={(e)=>handlechanges(e)}/> Male
@@ -86,10 +104,22 @@ function Booking() {
         <input type='time' placeholder='Enter your preferred time' name='time' onChange={(e)=>handlechanges(e)}/>
 
         <label htmlFor='amount'>Amount Paid(INR)</label>
-        <input type='text' placeholder='Enter Amount Paid' name='amount' onChange={(e)=>handlechanges(e)} req="true"/>
+        <input type='text' placeholder='Enter Amount Paid' name='amount' onChange={(e)=>handlechanges(e)} required/>
 
         <button type='button'>Submit</button>
       </form>
+      {bookingInfo && (
+        <div className='booking-info'>
+          <h2>Booking Information</h2>
+          <p><strong>Name:</strong> {bookingInfo.name}</p>
+          <p><strong>Date:</strong> {new Date(bookingInfo.date).toLocaleString()}</p>
+          <p><strong>Time Slot:</strong> {bookingInfo.time_slot}</p>
+          <p><strong>Status:</strong> {bookingInfo.status}</p>
+          <p><strong>Amount Paid:</strong> ₹{bookingInfo.amount}</p>
+          <p><strong>Payment Mode:</strong> {bookingInfo.payment_mode}</p>
+          {/* Add more fields as needed */}
+        </div>
+      )}
     </div>
   )
 }

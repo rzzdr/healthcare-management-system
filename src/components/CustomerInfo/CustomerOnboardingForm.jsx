@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
 const CustomerOnboardingForm = () => {
   const [formData, setFormData] = useState({
@@ -50,6 +50,29 @@ const CustomerOnboardingForm = () => {
       // Handle the error (e.g., display an error message)
     }
   };
+  useEffect(() => {
+    const fetchCustomerInfo = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/customers/{customer_id}/get-customer/`, {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch customer info");
+        }
+
+        const data = await response.json();
+        setCustomerInfo(data); // Store fetched data in state
+      } catch (error) {
+        console.error("Error fetching customer info:", error);
+        // Handle the error (e.g., display an error message)
+      }
+    };
+
+    fetchCustomerInfo();
+  }, []);
 
   
 

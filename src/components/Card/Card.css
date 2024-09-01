@@ -130,3 +130,6 @@
     
     color: #fff;
 }
+.invoice,.customer,.booking{
+    font-size: 1.5rem;
+}

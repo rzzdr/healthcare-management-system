@@ -6,7 +6,7 @@ import Main from "./components/Container/Main";
 import Header from "./components/Header/Header";
 import Content from "./components/Container/Content";
 import CardList from "./components/Card/CardList";
-import Chatbutton from "./components/Chatbot/Chatbutton";
+import Chatbot from "./components/Chatbot/Chatbot"
 import Booking from "./components/Booking/Booking"
 import Invoice from "./components/Invoice/Invoice";
 import Customer from "./components/CustomerInfo/Customer";
@@ -31,9 +31,10 @@ const App=()=>{
             <Route path="/booking" element={<Booking/>}/>
             <Route path="/hospitalonboardingform" element={<HospitalOnboardingForm/>}/>
             <Route path="/signin" element={<SignIn/>}/>
+            <Route path="/chatbot" element={<Chatbot/>}/>
             
           </Routes>
-          <Chatbutton/>
+          
 
         </Content>
         

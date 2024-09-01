@@ -25,7 +25,7 @@ const Chatbot = () => {
   return (
     <div className="chatbot-container">
       <div className="chatbot-header">
-        <h2>AI Chatbot</h2>
+        
       </div>
       <div className="chatbot-messages">
         {messages.map((msg, index) => (
@@ -39,7 +39,7 @@ const Chatbot = () => {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Type your message..."
+          placeholder="Enter Customer ID"
         />
         <button type="submit">Send</button>
       </form>

@@ -25,7 +25,7 @@ const MenuList=()=>{
       </li>
       
       <li className="menu--list-item">
-        <Link to={"/"}><IoMdStats/>REPORTS</Link>
+        <Link to={"chatbot"}><IoMdStats/>REPORTS</Link>
       </li>
       
       <li className="menu--list-item">
