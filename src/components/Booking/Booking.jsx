@@ -147,34 +147,6 @@ function Booking() {
 
           <button type="submit">Submit</button>
         </form>
-        {bookingInfo && (
-          <div className="booking-info">
-            <h2>Booking Information</h2>
-            <p>
-              <strong>Customer ID:</strong> {bookingInfo.customer_map_id}
-            </p>
-            <p>
-              <strong>Date:</strong>{" "}
-              {new Date(bookingInfo.date).toLocaleDateString()}
-            </p>
-            <p>
-              <strong>Time:</strong>{" "}
-              {new Date(
-                `1970-01-01T${bookingInfo.time}:00`
-              ).toLocaleTimeString()}
-            </p>
-            <p>
-              <strong>Test Name:</strong> {bookingInfo.name}
-            </p>
-            <p>
-              <strong>Amount Paid:</strong> ₹{bookingInfo.amount}
-            </p>
-            <p>
-              <strong>Payment Mode:</strong> {bookingInfo.payment_mode}
-            </p>
-            {/* Add more fields as needed */}
-          </div>
-        )}
       </div>
     );
 }
