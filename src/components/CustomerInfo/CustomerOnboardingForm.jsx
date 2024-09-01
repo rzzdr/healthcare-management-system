@@ -78,7 +78,7 @@ const CustomerOnboardingForm = () => {
                 }
 
                 const data = await response.json();
-                setCustomerInfo(data); // Store fetched data in state
+                setCustomers(data); // Store fetched data in state
             } catch (error) {
                 console.error("Error fetching customer info:", error);
                 // Handle the error (e.g., display an error message)
