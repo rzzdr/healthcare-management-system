@@ -68,10 +68,8 @@ const SignIn = () => {
           <Link to="signup">Create an account</Link>
         </span>
             </p>
-            <div className="divider">OR</div>
-            <button className="btn btn-google" onClick={handleGoogleSignIn}>
-                Sign In with Google
-            </button>
+            
+            
         </div>
     );
 };
