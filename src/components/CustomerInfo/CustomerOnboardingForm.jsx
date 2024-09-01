@@ -62,32 +62,6 @@ const CustomerOnboardingForm = () => {
             // Handle the error (e.g., display an error message)
         }
     };
-    useEffect(() => {
-        const fetchCustomerInfo = async () => {
-            const idToken = await auth.currentUser?.getIdToken();
-            try {
-                const response = await fetch(`${BASE_URL}/customers/get-customers/`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${idToken}`
-                    }
-                });
-                if (!response.ok) {
-                    throw new Error("Failed to fetch customer info");
-                }
-
-                const data = await response.json();
-                setCustomers(data); // Store fetched data in state
-            } catch (error) {
-                console.error("Error fetching customer info:", error);
-                // Handle the error (e.g., display an error message)
-            }
-        };
-
-        fetchCustomerInfo();
-    }, []);
-
 
     return (
       <form onSubmit={handleSubmit}>
