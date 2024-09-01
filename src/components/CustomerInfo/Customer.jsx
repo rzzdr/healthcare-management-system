@@ -14,10 +14,11 @@ const CustomerOptions = () => {
   };
 
   useEffect(() => {
-
     const fetchCustomerData = async () => {
       try {
-        const response = await fetch("/customers/12345");
+        const response = await fetch(
+          "https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io/api/customers/${customerId}"
+        );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
