@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
 const CustomerOnboardingForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -25,12 +25,33 @@ const CustomerOnboardingForm = () => {
       [name]: value,
     });
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Send a POST request to API
-    console.log("Customer Data:", formData);
+
+    try {
+      const response = await fetch(BASE_URL+"/customers/create-customer/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to create customer");
+      }
+
+      const result = await response.json();
+      console.log("Customer created successfully:", result);
+      // You can also handle the result (e.g., display a success message or navigate)
+    } catch (error) {
+      console.error("Error creating customer:", error);
+      // Handle the error (e.g., display an error message)
+    }
   };
+
+  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -70,7 +91,8 @@ const CustomerOnboardingForm = () => {
         onChange={handleChange}
         required
       />
-      <textarea
+      <input
+          type="text"
         name="past_medical_history"
         placeholder="Past Medical History"
         onChange={handleChange}
@@ -88,7 +110,9 @@ const CustomerOnboardingForm = () => {
         placeholder="Gender"
         onChange={handleChange}
       />
-      <textarea
+      <input
+        type="text"
+        
         name="old_diseases"
         placeholder="Old Diseases"
         onChange={handleChange}
@@ -111,7 +135,8 @@ const CustomerOnboardingForm = () => {
         placeholder="Height"
         onChange={handleChange}
       />
-      <textarea
+      <input
+        type="text"
         name="allergies"
         placeholder="Allergies"
         onChange={handleChange}
@@ -122,3 +147,4 @@ const CustomerOnboardingForm = () => {
 };
 
 export default CustomerOnboardingForm;
+

@@ -12,7 +12,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     padding: 20px;
     background: #f9f9f9;
 }
@@ -26,14 +26,15 @@ h2 {
 .options {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 70%;
     margin-bottom: 20px;
+    gap: 5px;
 }
 
 .option-box {
     flex: 1;
-    padding: 20px;
-    margin: 0 10px;
+    padding: 6px;
+    margin: 0 5px;
     border: none;
     border-radius: 8px;
     background-color: #007bff;

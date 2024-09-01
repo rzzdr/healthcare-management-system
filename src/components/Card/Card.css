@@ -7,11 +7,12 @@
 .card{
     flex: 1;
     border-radius: 10px;
-    background: #000;
+    background: #F3EBE5;
     padding: 20px;
     display: flex;
     gap: 30px;
     justify-content: space-between;
+    
 }
 .card--icon{
     background: #010101;
@@ -21,7 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1rem;
     border-radius: 50%;
 }
 .growth{
@@ -32,33 +33,38 @@
     gap: 10px;
 }
 .card--header{
-    background-color: blue;
+    background-color: #bf8282;
     padding: 20px;
     border-radius: 5px;
     margin-right: 10px;
     color: #fff;
+    width: 30%;
 }
 .card--header-1{
-    background-color: orange;
-    padding: 20px;
+    background-color: #d1ac7e;
+    padding: 10px;
     border-radius: 5px;
     margin-right: 10px;
     color: #fff;
+    width: 30%;
 
 }
 .card--header-2{
-    background-color: rgb(21, 118, 21);
+    background-color: #958ee6;
     padding: 20px;
     border-radius: 5px;
-    margin-right: 10px;
+    margin-right: 5px;
     color: #fff;
+    width: 30%;
+
 }
 .card--header-3{
-    background-color:rgb(170, 128, 72);
+    background-color:#92cfb5;
     padding: 20px;
     border-radius: 5px;
-    margin-right: 10px;
+    margin-right:5px;
     color: #fff;
+    width: 30%;
 }
 @media (max-width: 1024px) {
     .card {
@@ -88,39 +94,39 @@
 .growth {
     display: flex;
     justify-content: space-between;
-    width: 40%;
+    width: 30%;
     margin-top: 10px;
-    gap: 10px;
+    gap: 7px;
 }
 
 .card--header {
-    background-color: blue;
-    padding: 20px;
+    background-color: #bf8282;
+    padding: 15px;
     border-radius: 5px;
-    margin-right: 10px;
+    
     color: #fff;
 }
 
 .card--header-1 {
-    background-color: orange;
-    padding: 20px;
+    background-color: #d1ac7e;
+    padding: 15px;
     border-radius: 5px;
-    margin-right: 10px;
+    
     color: #fff;
 }
 
 .card--header-2 {
-    background-color: rgb(21, 118, 21);
-    padding: 20px;
+    background-color: #958ee6;
+    padding: 15px;
     border-radius: 5px;
-    margin-right: 10px;
+    
     color: #fff;
 }
 
 .card--header-3 {
-    background-color: rgb(170, 128, 72);
-    padding: 20px;
+    background-color: #92cfb5;
+    padding: 15px;
     border-radius: 5px;
-    margin-right: 10px;
+    
     color: #fff;
 }

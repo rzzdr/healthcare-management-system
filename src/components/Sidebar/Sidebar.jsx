@@ -11,7 +11,7 @@ const Sidebar=()=>{
     <div className="sidebar-container">
         <div className="sidebar-toggle" onClick={toggle}>{isOpen?<IoIosArrowBack/>:<IoIosArrowForward/>}</div>
         <div className={isOpen? "sidebar open":"sidebar"}>
-            <div className="sidebar--logo"> Z K</div>
+            
             <MenuList/>
         </div>
     </div>

@@ -3,12 +3,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #000;
-    padding: 10px;
+    background-color: #F3EBE5;
+    padding: 7px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 .header-title{
-    color: #fff;
+    color: #000;
 }
 .search-box{
     background: #eee;
@@ -31,6 +31,7 @@
     gap: 20px;
 }
 .user-box .user--icon{
+    color: #000;
     background: #eee;
     padding: 10px;
     border-radius: 4px;

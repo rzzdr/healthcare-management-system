@@ -1,7 +1,10 @@
 import React from "react";
+
 import "./CustomerInfo.css";
 
 const CustomerInfo = ({ customer }) => {
+ 
+
   return (
     <div className="customer-info">
       <h2>Customer Information</h2>

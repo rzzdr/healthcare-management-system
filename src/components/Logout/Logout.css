@@ -1,0 +1,13 @@
+.logout{
+    background-color: rgb(132, 121, 121);
+    width: 100%;
+    z-index: 15;
+}
+.h1{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    font-size: 2rem;
+    font-weight: bold;
+}

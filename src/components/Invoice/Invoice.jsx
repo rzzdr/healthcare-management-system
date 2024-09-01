@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import "./Invoice.css"; 
+import React, { useState, useEffect } from 'react';
 
+import "./Invoice.css"; 
+const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
 const Invoice = () => {
   const [action, setAction] = useState("");
   const [customerId, setCustomerId] = useState("");
@@ -10,6 +11,7 @@ const Invoice = () => {
   const [items, setItems] = useState([
     { itemName: "", itemPrice: "", quantity: "" },
   ]);
+  const [invoices, setInvoices] = useState([]);
 
   const handleActionChange = (selectedAction) => {
     setAction(selectedAction);
@@ -44,7 +46,7 @@ const Invoice = () => {
     setItems(newItems);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const invoiceRequest = {
       customer_id: customerId,
@@ -53,10 +55,50 @@ const Invoice = () => {
       status: status,
       remarks: remarks,
     };
-    console.log(invoiceRequest);
-    // Send the invoiceRequest to backend API
-    resetForm();
+    try {
+      console.log(localStorage.getItem("token"))
+      const response = await fetch(BASE_URL+'/customers/create-invoice/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(invoiceRequest),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Success:', data);
+      alert('Invoice added successfully!');
+
+      resetForm();
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to add invoice. Please try again.');
+    }
   };
+  const fetchInvoices = async () => {
+    try {
+      const response = await fetch('/customers/{invoice_id}/get-invoice/'); // Adjust the endpoint as needed
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setInvoices(data); // Assuming data is an array of invoices
+    } catch (error) {
+      console.error('Error fetching invoices:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (action === "view") {
+      fetchInvoices(); // Fetch invoices when viewing invoices
+    }
+  }, [action]);
+
 
   return (
     <div className="invoice-container">
@@ -214,3 +256,4 @@ const Invoice = () => {
 };
 
 export default Invoice;
+

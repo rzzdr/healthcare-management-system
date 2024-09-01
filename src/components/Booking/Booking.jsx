@@ -14,12 +14,45 @@ function Booking() {
   });
 
   const handlechanges= (e)=>{
-    setValues({...values, [e.target.name]:[e.target.value]})
-
+    if (e.target.type === 'radio') {
+      setValues({ ...values, [e.target.name]: e.target.value });
+    } else {
+      setValues({ ...values, [e.target.name]: e.target.value });
+    }
   }
-  const handleSubmit=(e)=>{
+  const handleSubmit= async (e)=>{
     e.preventDefault()
-    console.log(values);
+    const requestData = {
+      customer_map_id: "3fa85f64-5717-4562-b3fc-2c963f66afa6", // Replace with actual customer ID
+      time_slot: values.time,
+      date: new Date().toISOString(), // Current date and time
+      remarks: "", // Add remarks if needed
+      status: "Pending", // Set default status
+      name: `${values.firstname} ${values.lastname}`,
+      amount: parseFloat(values.amount),
+      payment_mode: "Cash" // Replace with actual payment mode if needed
+    };
+
+    try {
+      const response = await fetch('/customers/create-appointment/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      console.log('Booking successful:', result);
+      // Handle success (e.g., show a success message or redirect)
+    } catch (error) {
+      console.error('Error during booking:', error);
+      // Handle error (e.g., show an error message)
+    }
   }
 
   return (

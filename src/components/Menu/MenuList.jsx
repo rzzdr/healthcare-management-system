@@ -9,6 +9,9 @@ const MenuList=()=>{
         <Link to={"/"}><IoMdHome/>DASHBOARD</Link>
       </li>
       <li className="menu--list-item">
+        <Link to={"/signin"}><IoMdLogIn/>SIGN IN</Link>
+      </li>
+      <li className="menu--list-item">
         <Link to={"/invoice"}><IoMdDocument/>INVOICE</Link>
       </li>
       <li className="menu--list-item">
@@ -18,10 +21,15 @@ const MenuList=()=>{
         <Link to={"/booking"}><IoMdTime/>BOOK TEST/APPOINTMENT</Link>
       </li>
       <li className="menu--list-item">
+        <Link to={"/hospitalonboardingform"}>HOSPITAL ONBOARDING</Link>
+      </li>
+      
+      <li className="menu--list-item">
         <Link to={"/"}><IoMdStats/>REPORTS</Link>
       </li>
+      
       <li className="menu--list-item">
-        <Link to={"/"}><IoMdLogIn/>LOG OUT</Link>
+        <Link to={"/logout"}><IoMdLogIn/>LOG OUT</Link>
       </li>
     </ul>
   )

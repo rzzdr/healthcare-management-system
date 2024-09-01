@@ -2,9 +2,10 @@ form {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #000;
   border-radius: 8px;
   background-color: #f9f9f9;
+  box-shadow: 5px 2px 2px rgb(113, 111, 111);
 }
 
 h2 {
@@ -24,17 +25,18 @@ h2 {
 
 input[type="text"],
 input[type="email"],
-input[type="date"],
-textarea {
+input[type="date"]
+ {
   width: 100%;
   padding: 10px;
   margin: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #000;
   border-radius: 4px;
   box-sizing: border-box;
+  box-shadow: 3px 3px 3px rgb(67, 65, 65);
 }
 
-textarea {
+input[type="text"] {
   resize: vertical;
   min-height: 80px;
 }

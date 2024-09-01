@@ -4,7 +4,7 @@ import "./Header.css"
 const Header=()=>{
     return(
         <div className="header">
-            <h2 className="header-title">Dashboard</h2>
+            <h2 className="header-title">Z K</h2>
 
             <div className="search-box">
                 <input type="text" placeholder="Search..." />
