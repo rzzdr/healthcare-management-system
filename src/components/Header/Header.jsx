@@ -7,11 +7,6 @@ const Header = () => {
         <div className="header">
             <h2 className="header-title">Z K</h2>
 
-            <div className="search-box">
-                <input type="text" placeholder="Search..."/>
-                <IoSearch className="search--icon"/>
-            </div>
-
             <div className="user-box">
                 <IoNotifications className="user--icon"/>
                 <IoLogOutOutline className="user--icon"/>
