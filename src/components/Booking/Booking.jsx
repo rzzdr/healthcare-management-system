@@ -26,16 +26,18 @@ function Booking() {
         e.preventDefault()
         const requestData = {
           customer_map_id: values.customer_map_id, // Replace with actual customer ID
-          time: values.time,
+            time_slot: values.time,
           date: new Date().toISOString(), // Current date and time
           remarks: values.remarks,
           name: values.booktest,
           amount: parseFloat(values.amount),
-          payment_mode: values.payment_mode, // Replace with actual payment mode if needed
+          payment_mode: values.payment_mode,
+            status: "hello"// Replace with actual payment mode if needed
         };
 
         try {
             const idToken = await auth.currentUser?.getIdToken();
+            console.log(requestData)
             const response = await fetch(BASE_URL + '/customers/create-appointment/', {
                 method: 'POST',
                 headers: {
