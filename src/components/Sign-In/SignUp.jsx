@@ -16,7 +16,7 @@ const SignUp = () => {
                 console.log("Sign Up successful!");
                 const data = {
                     email: email,
-                    uid: result.user.uid,
+                    firebase_user_id: result.user.uid,
                     name: "John Doe",
                 }
                 await fetch(BASE_URL + '/hospital/create-user/', {
