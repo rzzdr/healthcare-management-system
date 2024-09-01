@@ -147,12 +147,6 @@ const Invoice = () => {
           >
             View Invoices
           </button>
-          <button
-            className="option-box"
-            onClick={() => handleActionChange("delete")}
-          >
-            Delete Invoice
-          </button>
         </div>
       )}
 
@@ -232,11 +226,11 @@ const Invoice = () => {
               />
             </div>
             <div className="form-group">
-              <label>Remarks</label>
+              <label>Discharge Summary</label>
               <textarea
                 value={remarks}
                 onChange={(e) => setRemarks(e.target.value)}
-                placeholder="Enter any remarks"
+                placeholder="Enter Discharge Summary"
               />
             </div>
             <button type="submit" className="btn btn-primary">
@@ -268,28 +262,6 @@ const Invoice = () => {
             <p>No invoices available</p>
           )}
           {/* Display invoice listing logic goes here */}
-          <button className="back-btn" onClick={handleBack}>
-            Back
-          </button>
-        </div>
-      )}
-
-      {action === "delete" && (
-        <div className="delete-invoice">
-          <h3>Delete Invoice</h3>
-          <form>
-            <div className="form-group">
-              <label>Invoice Number</label>
-              <input
-                type="text"
-                placeholder="Enter invoice number to delete"
-                required
-              />
-            </div>
-            <button type="submit" className="btn btn-danger">
-              Delete Invoice
-            </button>
-          </form>
           <button className="back-btn" onClick={handleBack}>
             Back
           </button>
