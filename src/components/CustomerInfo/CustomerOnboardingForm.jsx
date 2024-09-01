@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {auth} from "../Sign-In/firebaseConfig.js";
 
 const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
 const CustomerOnboardingForm = () => {
@@ -37,8 +38,7 @@ const CustomerOnboardingForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const idToken = await auth.currentUser?.getIdToken();
+        console.log(formData);
         try {
             const idToken = await auth.currentUser?.getIdToken();
             const response = await fetch(BASE_URL + "/customers/create-customer/", {
@@ -65,6 +65,8 @@ const CustomerOnboardingForm = () => {
         const fetchCustomerInfo = async () => {
             const idToken = await auth.currentUser?.getIdToken();
             try {
+
+
                 
                 const response = await fetch(`${BASE_URL}/customers/get-customers/`, {
                     method: "GET",
