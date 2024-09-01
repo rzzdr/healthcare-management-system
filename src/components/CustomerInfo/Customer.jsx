@@ -8,7 +8,7 @@ const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azure
 
 const CustomerOptions = () => {
   const [activeSection, setActiveSection] = useState("form");
-  const [customer, setCustomer] = useState(null);
+  const [customer, setCustomer] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
