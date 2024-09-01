@@ -3,7 +3,9 @@ import React from "react";
 import "./CustomerInfo.css";
 
 const CustomerInfo = ({customer}) => {
-
+    if (!customer) {
+      return <p>No customer data available.</p>;
+    }
 
     return (
         <div className="customer-info">
