@@ -56,9 +56,10 @@ const CustomerOnboardingForm = () => {
         const fetchCustomerInfo = async () => {
             try {
                 const idToken = await auth.currentUser?.getIdToken();
-                const response = await fetch(`${BASE_URL}/customers/{customer_id}/get-customer/`, {
+                const response = await fetch(`${BASE_URL}/customers}/get-customers/`, {
                     method: "GET",
                     headers: {
+                        'Content-Type': 'application/json',
                         "Authorization": `Bearer ${idToken}`
                     }
                 });
