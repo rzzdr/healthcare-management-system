@@ -8,7 +8,7 @@ const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azure
 
 const CustomerOptions = () => {
   const [activeSection, setActiveSection] = useState("form");
-  const [customer, setCustomer] = useState([]);
+  const [customer, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -31,7 +31,7 @@ const CustomerOptions = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setCustomer(data);
+        setCustomers(data);
       } catch (error) {
         setError(error.message);
       } finally {
