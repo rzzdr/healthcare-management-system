@@ -143,7 +143,7 @@ function Booking() {
             <option value="Online">Online</option>
           </select>
 
-          <button type="button">Submit</button>
+          <button type="submit">Submit</button>
         </form>
         {bookingInfo && (
           <div className="booking-info">
