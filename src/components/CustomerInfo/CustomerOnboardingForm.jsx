@@ -21,9 +21,17 @@ const CustomerOnboardingForm = () => {
 
     const handleChange = (e) => {
         const {name, value} = e.target;
+
+        let processedValue = value;
+        if (name === "weight" || name === "height") {
+          processedValue = value === "" ? "" : parseInt(value, 10);
+        } else if (name === "whatsapp_number") {
+          processedValue = value.replace(/\D/g, "");
+        }
+
         setFormData({
             ...formData,
-            [name]: value,
+            [name]: processedValue,
         });
     };
 
@@ -145,19 +153,19 @@ const CustomerOnboardingForm = () => {
                 onChange={handleChange}
             />
             <input
-                type="text"
+                type="number"
                 name="whatsapp_number"
                 placeholder="WhatsApp Number"
                 onChange={handleChange}
             />
             <input
-                type="text"
+                type="number"
                 name="weight"
                 placeholder="Weight"
                 onChange={handleChange}
             />
             <input
-                type="text"
+                type="number"
                 name="height"
                 placeholder="Height"
                 onChange={handleChange}
