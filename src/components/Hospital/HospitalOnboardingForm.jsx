@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {auth} from "../Sign-In/firebaseConfig.js";
 
 const BASE_URL = "https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io";
 const HospitalOnboardingForm = () => {
@@ -25,10 +26,12 @@ const HospitalOnboardingForm = () => {
         e.preventDefault();
         // Send a POST request to API
         try {
+            const idToken = await auth.currentUser?.getIdToken();
             const response = await fetch(BASE_URL + '/hospital/onboard-hospital/', { // Replace with your actual endpoint
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`,
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData),
             });

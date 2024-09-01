@@ -3,6 +3,8 @@ import {auth} from "./firebaseConfig";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import "./Auth.css";
 
+const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
+
 const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,7 +14,18 @@ const SignUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(async (result) => {
                 console.log("Sign Up successful!");
-                console.log(await result.user.getIdToken())
+                const data = {
+                    email: email,
+                    uid: result.user.uid,
+                    name: "John Doe",
+                }
+                await fetch(BASE_URL + '/hospital/create-user/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
             })
             .catch((error) => {
                 console.error("Error during Sign Up:", error);

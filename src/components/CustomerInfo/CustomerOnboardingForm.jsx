@@ -53,11 +53,12 @@ const CustomerOnboardingForm = () => {
     };
     useEffect(() => {
         const fetchCustomerInfo = async () => {
+            const idToken = await auth.currentUser?.getIdToken();
             try {
                 const response = await fetch(`${BASE_URL}/customers/{customer_id}/get-customer/`, {
                     method: "GET",
                     headers: {
-                        "Authorization": `Bearer ${localStorage.getItem('token')}`
+                        "Authorization": `Bearer ${idToken}`
                     }
                 });
                 if (!response.ok) {

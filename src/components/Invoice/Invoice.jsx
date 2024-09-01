@@ -4,7 +4,7 @@ import "./Invoice.css";
 import {auth} from "../Sign-In/firebaseConfig.js";
 
 const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
-const Invoice = async () => {
+const Invoice = () => {
     const [action, setAction] = useState("");
     const [customerId, setCustomerId] = useState("");
     const [paymentMode, setPaymentMode] = useState("");
@@ -108,7 +108,7 @@ const Invoice = async () => {
     };
     useEffect(() => {
         if (action === "view") {
-            fetchInvoices(); // Fetch invoices when the view action is selected
+            fetchInvoices();
         }
     }, [action]);
 
