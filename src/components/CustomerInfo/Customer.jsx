@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CustomerOnboardingForm from "./CustomerOnboardingForm";
 import CustomerInfo from "./CustomerInfo";
 import "./Customer.css";
+import {auth} from "../Sign-In/firebaseConfig.js";
 
 const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
 
