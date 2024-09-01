@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { auth } from "../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./Auth.css";
+import {use} from "marked";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -10,8 +11,9 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
+      .then((usercred) => {
         console.log("Sign Up successful!");
+        console.log(usercred.user.getIdToken())
       })
       .catch((error) => {
         console.error("Error during Sign Up:", error);

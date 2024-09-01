@@ -28,7 +28,7 @@ const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
+      .then((usercred: UserCredential) => {
         console.log("Sign In successful!");
         navigate("/");
       })
