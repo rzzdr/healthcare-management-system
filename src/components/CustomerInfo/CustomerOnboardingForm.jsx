@@ -27,6 +27,9 @@ const CustomerOnboardingForm = () => {
           processedValue = value === "" ? "" : parseInt(value, 10);
         } else if (name === "phone" || name === "whatsapp_number") {
           processedValue = value.replace(/\D/g, "");
+        } else if (name === "date_of_birth") {
+          const date = new Date(value);
+          processedValue = date.toISOString().split("T")[0];
         }
 
         setFormData({
