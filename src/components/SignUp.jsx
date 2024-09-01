@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth } from "../firebaseConfig";
+import { auth } from "./firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./Auth.css";
 import {use} from "marked";
