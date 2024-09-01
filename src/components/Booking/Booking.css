@@ -62,6 +62,25 @@ button:hover {
     background-color: #2b036c;
 }
 
+select {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #000000;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
 @media (min-width: 768px) {
     .container {
         width: 80%;
