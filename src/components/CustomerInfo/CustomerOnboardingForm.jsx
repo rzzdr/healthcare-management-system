@@ -21,9 +21,17 @@ const CustomerOnboardingForm = () => {
 
     const handleChange = (e) => {
         const {name, value} = e.target;
+
+        let processedValue = value;
+        if (name === "weight" || name === "height") {
+          processedValue = value === "" ? "" : parseInt(value, 10);
+        } else if (name === "phone" || name === "whatsapp_number") {
+          processedValue = value.replace(/\D/g, "");
+        }
+
         setFormData({
             ...formData,
-            [name]: value,
+            [name]: processedValue,
         });
     };
 
@@ -82,95 +90,99 @@ const CustomerOnboardingForm = () => {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Customer Onboarding</h2>
-            <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                onChange={handleChange}
-                required
-            />
-            <input
-                type="text"
-                name="address"
-                placeholder="Address"
-                onChange={handleChange}
-                required
-            />
-            <input
-                type="text"
-                name="phone"
-                placeholder="Phone"
-                onChange={handleChange}
-                required
-            />
-            <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                onChange={handleChange}
-                required
-            />
-            <input
-                type="text"
-                name="city"
-                placeholder="City"
-                onChange={handleChange}
-                required
-            />
-            <input
-                type="text"
-                name="past_medical_history"
-                placeholder="Past Medical History"
-                onChange={handleChange}
-            />
-            <input type="date" name="date_of_birth" onChange={handleChange}/>
-            <input
-                type="text"
-                name="blood_group"
-                placeholder="Blood Group"
-                onChange={handleChange}
-            />
-            <input
-                type="text"
-                name="gender"
-                placeholder="Gender"
-                onChange={handleChange}
-            />
-            <input
-                type="text"
-
-                name="old_diseases"
-                placeholder="Old Diseases"
-                onChange={handleChange}
-            />
-            <input
-                type="text"
-                name="whatsapp_number"
-                placeholder="WhatsApp Number"
-                onChange={handleChange}
-            />
-            <input
-                type="text"
-                name="weight"
-                placeholder="Weight"
-                onChange={handleChange}
-            />
-            <input
-                type="text"
-                name="height"
-                placeholder="Height"
-                onChange={handleChange}
-            />
-            <input
-                type="text"
-                name="allergies"
-                placeholder="Allergies"
-                onChange={handleChange}
-            />
-            <button type="submit">Submit</button>
-        </form>
+      <form onSubmit={handleSubmit}>
+        <h2>Customer Onboarding</h2>
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="address"
+          placeholder="Address"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="phone"
+          placeholder="Phone"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="city"
+          placeholder="City"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="past_medical_history"
+          placeholder="Past Medical History"
+          onChange={handleChange}
+        />
+        <input
+          type="date"
+          name="date_of_birth"
+          onChange={handleChange}
+          value={formData.date_of_birth || ""}
+        />
+        <input
+          type="text"
+          name="blood_group"
+          placeholder="Blood Group"
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="gender"
+          placeholder="Gender"
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="old_diseases"
+          placeholder="Old Diseases"
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="whatsapp_number"
+          placeholder="WhatsApp Number"
+          onChange={handleChange}
+        />
+        <input
+          type="number"
+          name="weight"
+          placeholder="Weight"
+          onChange={handleChange}
+        />
+        <input
+          type="number"
+          name="height"
+          placeholder="Height"
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="allergies"
+          placeholder="Allergies"
+          onChange={handleChange}
+        />
+        <button type="submit">Submit</button>
+      </form>
     );
 };
 
