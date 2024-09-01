@@ -1,8 +1,9 @@
-.main{
+.main {
     flex: 1;
     overflow: auto;
 }
-.content{
+
+.content {
     padding: 2rem 1rem;
     display: flex;
     flex-direction: column;

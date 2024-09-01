@@ -1,23 +1,26 @@
-.menu--list{
+.menu--list {
     display: flex;
     list-style: none;
     flex-direction: column;
     gap: 0.6rem;
     padding: 10px;
 }
-.menu--list-item{
+
+.menu--list-item {
     padding: 0.7rem;
     border-radius: 5px;
     overflow: hidden;
     font-size: 0.8rem;
 }
+
 .menu--list-item:hover,
-.active{
+.active {
     background-color: #3c3c3c;
     cursor: pointer;
     transition: all 0.3s ease-in;
 }
-.menu--list-item a{
+
+.menu--list-item a {
     overflow: hidden;
     display: flex;
     gap: 5px;

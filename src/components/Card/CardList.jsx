@@ -1,8 +1,9 @@
 import React from "react";
 import Card from "./Card";
 import "./Card.css"
-const CardList=()=>{
-    return(
+
+const CardList = () => {
+    return (
         <div className="card--list">
             <Card/>
         </div>

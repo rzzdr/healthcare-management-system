@@ -1,9 +1,10 @@
-.logout{
+.logout {
     background-color: rgb(132, 121, 121);
     width: 100%;
     z-index: 15;
 }
-.h1{
+
+.h1 {
     text-align: center;
     justify-content: center;
     align-items: center;

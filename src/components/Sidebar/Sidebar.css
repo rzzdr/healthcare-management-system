@@ -1,4 +1,4 @@
-.sidebar{
+.sidebar {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -12,31 +12,37 @@
     z-index: 1;
     transition: width 0.3s ease-in-out;
 }
-.sidebar--logo{
+
+.sidebar--logo {
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
     padding: 1rem;
 }
-.sidebar-toggle{
+
+.sidebar-toggle {
     display: none;
 }
-@media (max-width:500px){
-    .sidebar{
+
+@media (max-width: 500px) {
+    .sidebar {
         width: 0;
         overflow: hidden;
     }
-    .sidebar.open{
+
+    .sidebar.open {
         width: 200px;
         position: fixed;
         top: 0;
         left: 0;
         transition: width 0.3s ease-in-out;
     }
-    .sidebar.open .sidebar--logo{
+
+    .sidebar.open .sidebar--logo {
         margin-top: 3rem;
     }
-    .sidebar-toggle{
+
+    .sidebar-toggle {
         display: flex;
         align-items: center;
         justify-content: center;

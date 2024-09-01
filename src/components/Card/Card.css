@@ -1,10 +1,11 @@
-.card--list{
+.card--list {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    
+
 }
-.card{
+
+.card {
     flex: 1;
     border-radius: 10px;
     background: #F3EBE5;
@@ -12,9 +13,10 @@
     display: flex;
     gap: 30px;
     justify-content: space-between;
-    
+
 }
-.card--icon{
+
+.card--icon {
     background: #010101;
     width: 30px;
     height: 30px;
@@ -25,14 +27,16 @@
     font-size: 1rem;
     border-radius: 50%;
 }
-.growth{
+
+.growth {
     display: flex;
     justify-content: space-between;
     width: 40%;
     margin-top: 10px;
     gap: 10px;
 }
-.card--header{
+
+.card--header {
     background-color: #bf8282;
     padding: 20px;
     border-radius: 5px;
@@ -40,7 +44,8 @@
     color: #fff;
     width: 30%;
 }
-.card--header-1{
+
+.card--header-1 {
     background-color: #d1ac7e;
     padding: 10px;
     border-radius: 5px;
@@ -49,7 +54,8 @@
     width: 30%;
 
 }
-.card--header-2{
+
+.card--header-2 {
     background-color: #958ee6;
     padding: 20px;
     border-radius: 5px;
@@ -58,14 +64,16 @@
     width: 30%;
 
 }
-.card--header-3{
-    background-color:#92cfb5;
+
+.card--header-3 {
+    background-color: #92cfb5;
     padding: 20px;
     border-radius: 5px;
-    margin-right:5px;
+    margin-right: 5px;
     color: #fff;
     width: 30%;
 }
+
 @media (max-width: 1024px) {
     .card {
         flex: 1 1 calc(50% - 20px); /* Two cards per row */
@@ -103,7 +111,7 @@
     background-color: #bf8282;
     padding: 15px;
     border-radius: 5px;
-    
+
     color: #fff;
 }
 
@@ -111,7 +119,7 @@
     background-color: #d1ac7e;
     padding: 15px;
     border-radius: 5px;
-    
+
     color: #fff;
 }
 
@@ -119,7 +127,7 @@
     background-color: #958ee6;
     padding: 15px;
     border-radius: 5px;
-    
+
     color: #fff;
 }
 
@@ -127,9 +135,10 @@
     background-color: #92cfb5;
     padding: 15px;
     border-radius: 5px;
-    
+
     color: #fff;
 }
-.invoice,.customer,.booking{
+
+.invoice, .customer, .booking {
     font-size: 1.5rem;
 }

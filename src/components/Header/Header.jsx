@@ -1,13 +1,14 @@
 import React from "react";
-import {IoLogOutOutline,IoNotifications,IoSearch} from "react-icons/io5";
+import {IoLogOutOutline, IoNotifications, IoSearch} from "react-icons/io5";
 import "./Header.css"
-const Header=()=>{
-    return(
+
+const Header = () => {
+    return (
         <div className="header">
             <h2 className="header-title">Z K</h2>
 
             <div className="search-box">
-                <input type="text" placeholder="Search..." />
+                <input type="text" placeholder="Search..."/>
                 <IoSearch className="search--icon"/>
             </div>
 
