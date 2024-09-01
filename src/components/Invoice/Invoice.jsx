@@ -103,12 +103,12 @@ const Invoice = () => {
       const idToken = await auth.currentUser?.getIdToken();
       console.log("ID Token:", idToken);
       const response = await fetch(
-        `${BASE_URL}/customers/{invoice_id}/get-invoice/`,
+        `${BASE_URL}/hospital/get-invoices/`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${idToken}`,
+            "Authorization": `Bearer ${idToken}`,
           },
         }
       );
