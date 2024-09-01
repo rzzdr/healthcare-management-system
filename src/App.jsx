@@ -13,7 +13,7 @@ import Customer from "./components/CustomerInfo/Customer";
 import HospitalOnboardingForm from "./components/Hospital/HospitalOnboardingForm";
 import Logout from "./components/Logout/Logout";
 import SignIn from"./components/Sign-In/SignIn"
-
+import SignUp from "./components/Sign-In/SignUp"
 
 const App=()=>{
   return(
@@ -32,7 +32,7 @@ const App=()=>{
             <Route path="/hospitalonboardingform" element={<HospitalOnboardingForm/>}/>
             <Route path="/signin" element={<SignIn/>}/>
             <Route path="/chatbot" element={<Chatbot/>}/>
-            
+            <Route path="signup" element={<SignUp/>}/>
           </Routes>
           
 

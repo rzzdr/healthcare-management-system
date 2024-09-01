@@ -68,7 +68,7 @@ const SignIn = () => {
       <p className="redirect">
         Don't have an account?{" "}
         <span onClick={() => navigate("/signup")} className="link">
-          Create an account
+          <Link to="signup">Create an account</Link>
         </span>
       </p>
       <div className="divider">OR</div>
