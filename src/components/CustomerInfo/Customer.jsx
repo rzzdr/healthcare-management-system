@@ -8,7 +8,7 @@ const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azure
 
 const CustomerOptions = () => {
   const [activeSection, setActiveSection] = useState("form");
-  const [customer, setCustomers] = useState([]);
+  const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -64,7 +64,7 @@ const CustomerOptions = () => {
       </div>
       <div className="content-container">
         {activeSection === "form" && <CustomerOnboardingForm />}
-        {activeSection === "info" && <CustomerInfo customer={customer} />}
+        {activeSection === "info" && <CustomerInfo customers={customers} />}
       </div>
     </div>
   );
