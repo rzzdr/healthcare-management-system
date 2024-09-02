@@ -1,8 +1,50 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import "./CustomerInfo.css";
+import { auth } from "../Sign-In/firebaseConfig.js";
+
+const BASE_URL =
+  "https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io";
 
 const CustomerInfo = ({ customers }) => {
+
+  const [customers, setCustomers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        const idToken = await auth.currentUser?.getIdToken();
+        const response = await fetch(`${BASE_URL}/customers/get-customers/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${idToken}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch customer data");
+        }
+        const data = await response.json();
+        setCustomers(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCustomers();
+  }, []);
+
+  if (loading) {
+    return <p>Loading customer data...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
   if (!customers || customers.length === 0) {
     return <p>No customer data available.</p>;
   }
