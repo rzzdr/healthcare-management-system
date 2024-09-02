@@ -5,7 +5,7 @@ import { auth } from "../Sign-In/firebaseConfig.js";
 const BASE_URL =
   "https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io";
 
-const CustomerInfo = ({ customers }) => {
+const CustomerInfo = () => {
 
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
