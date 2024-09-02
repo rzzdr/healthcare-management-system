@@ -71,7 +71,7 @@ const CustomerInfo = ({ customers }) => {
             <strong>City:</strong> {customer.city}
           </div>
           <div className="info-item">
-            <strong>All Message:</strong> {customer.al_message}
+            <strong>AI Message:</strong> {customer.al_message}
           </div>
           <div className="info-item">
             <strong>Created At:</strong>{" "}
