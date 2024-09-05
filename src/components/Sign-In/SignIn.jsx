@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import "./Auth.css";
+import googleLogo from "./google.png";
 
 const BASE_URL =
   "https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io";
@@ -56,7 +57,8 @@ const SignIn = () => {
       <div className="auth-image"></div>
       <div className="auth-content">
         <div className="auth-container">
-          <h2>Welcome
+          <h2>
+            Welcome
             <div className="headingtext">Enter your details.</div>
           </h2>
           <form onSubmit={handleSubmit}>
@@ -81,19 +83,24 @@ const SignIn = () => {
               />
             </div>
             <button type="submit" className="btn btn-primary">
-              Log In
+              Sign In
             </button>
           </form>
+          <div className="divider">OR</div>
+          <div className="google-sign-in">
+            <img
+              src={googleLogo}
+              alt="Sign In with Google"
+              className="google-logo"
+              onClick={handleGoogleSignIn}
+            />
+          </div>
           <p className="redirect">
             Don't have an account?{" "}
             <span onClick={() => navigate("/signup")} className="link">
               <Link to="/signup">Create an account</Link>
             </span>
           </p>
-          <div className="divider">OR</div>
-          <button className="btn btn-google" onClick={handleGoogleSignIn}>
-            Sign In with Google
-          </button>
         </div>
       </div>
     </div>
