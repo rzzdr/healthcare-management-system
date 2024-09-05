@@ -1,26 +1,16 @@
-.signin-page {
-  background-image: url("SignInBg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 80vh;
+.auth-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.9;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: black;
+  height: 80vh;
+  overflow: hidden; 
 }
 
 .auth-container {
   max-width: 400px;
   width: 100%;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(243, 235, 229);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1;
@@ -30,12 +20,44 @@ h2 {
   align-items: center;
 }
 
+.auth-image {
+  width: 40%;
+  background-image: url("image.png");
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+}
+
+.auth-content {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: black;
+}
+
+form {
+  width: 100%;
+  max-width: 300px;
+  padding: 20px;
+  background: transparent;
+  border-radius: none;
+  box-shadow: none;
+  border: none;
+}
+
 .form-group {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 15px;
+  padding: 0;
 }
 
 .form-group label {
@@ -47,8 +69,8 @@ h2 {
   width: 100%;
   max-width: 300px;
   padding: 10px;
-  border: 3px solid #382222;
-  border-radius: 4px;
+  border: 1px solid #382222;
+  border-radius: 10px;
   text-align: center;
   margin-top: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -77,6 +99,14 @@ h2 {
 .btn-google {
   background-color: #db4437;
   color: white;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 75%;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
 }
 
 .btn-google:hover {
@@ -101,4 +131,26 @@ h2 {
   text-align: center;
   margin: 10px 0;
   color: #666;
+}
+
+.social-auth {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.social-icon:hover {
+  opacity: 0.8;
+}
+
+.headingtext {
+  font-size: 20px;
+  font-weight: 400px;
 }
