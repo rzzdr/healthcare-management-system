@@ -6,8 +6,20 @@ import 'react-datalist-input/dist/styles.css';
 import api from "../../utils/api";
 import "./AutoCompeteId.css";
 
-const AutoCompeteId = ({ setSelectedId , label, placeholder }) => {
+const AutoCompeteId = ({ setSelectedId , label, placeholder ,mapFn }) => {
     const [data, setData] = useState([]);
+
+
+    if(!mapFn){
+        mapFn = (item) => {
+            return {
+                id: item.customer_mapping_id,
+                value: item.name + " - " + item.customer_mapping_id
+                // value : item.customer_mapping_id
+            }
+        }
+    }
+
 
     useEffect(() => {
         async function fetchData() {
@@ -31,11 +43,7 @@ const AutoCompeteId = ({ setSelectedId , label, placeholder }) => {
                 placeholder={placeholder}
                 className="auto-compete-group"
                 items={
-                    data.map((item) => ({
-                        id: item.customer_mapping_id,
-                        value: item.customer_mapping_id,
-                        description: item.name
-                    }))
+                    data.map(mapFn)
                 }
                 onSelect={(selectedItem) => {
                     setSelectedId(selectedItem.id);
