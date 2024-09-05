@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import "./Invoice.css";
 import { auth } from "../Sign-In/firebaseConfig.js";
+import AutoCompeteId from "../includes/AutoCompeteId.jsx";
+import "./Invoice.css";
 
 const BASE_URL =
   "https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io";
@@ -15,6 +16,14 @@ const Invoice = () => {
     { itemName: "", itemPrice: "", quantity: "" },
   ]);
   const [invoices, setInvoices] = useState([]);
+
+
+  useEffect(() => {
+    console.log(customerId);
+  }, [customerId]);
+
+
+ 
 
   const handleActionChange = (selectedAction) => {
     setAction(selectedAction);
@@ -153,16 +162,27 @@ const Invoice = () => {
       {action === "add" && (
         <div className="action-form">
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Customer ID</label>
-              <input
+            {/* <div className="form-group"> */}
+              {/* <label>Customer ID</label> */}
+              {/* <input
                 type="text"
                 value={customerId}
                 onChange={(e) => setCustomerId(e.target.value)}
                 placeholder="Enter customer ID"
                 required
-              />
-            </div>
+                list="users"
+              /> */}
+
+<div className="auto-compete-group">
+                <AutoCompeteId setSelectedId={setCustomerId} />
+              </div>
+              {/* <datalist id="users">
+                {filteredUserList.map((user) => (
+                  <option key={user.customer_mapping_id} value={user.customer_mapping_id} />
+                ))}
+              </datalist>  */}
+            {/* </div> */}
+
             {items.map((item, index) => (
               <div key={index} className="form-group">
                 <label>Item Name</label>

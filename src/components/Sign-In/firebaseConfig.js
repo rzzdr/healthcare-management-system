@@ -8,14 +8,14 @@ import {getAuth} from "firebase/auth"; // Import getAuth to use Firebase Authent
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyCIm-jKFcIp55yK_hAOlc97-gw6SyG8ePQ",
-    authDomain: "atishay-workspace.firebaseapp.com",
-    projectId: "atishay-workspace",
-    storageBucket: "atishay-workspace.appspot.com",
-    messagingSenderId: "357106872397",
-    appId: "1:357106872397:web:7b76183f806ba872bb6c04",
-    measurementId: "G-ZVHPGL7XNG"
-};
+    apiKey: "AIzaSyANGi4DKIrlfMWlfnPGe0pPImvLbYaeT4k",
+    authDomain: "sih-hackathon-906de.firebaseapp.com",
+    projectId: "sih-hackathon-906de",
+    storageBucket: "sih-hackathon-906de.appspot.com",
+    messagingSenderId: "470534870675",
+    appId: "1:470534870675:web:78c27fb81593265aaa5f66",
+    measurementId: "G-49GM2H5B8N"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
