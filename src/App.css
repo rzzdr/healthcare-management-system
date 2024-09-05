@@ -2,3 +2,10 @@
     display: flex;
     background-color: #f7f7f7;
 }
+
+.chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    
+}

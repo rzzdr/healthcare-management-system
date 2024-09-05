@@ -14,17 +14,26 @@
 }
 
 .menu--list-item:hover,
-.active {
+.menu--list-item:has( a.active ) {
+    color: #fff;
     background-color: #3c3c3c;
     cursor: pointer;
     transition: all 0.3s ease-in;
 }
+
+
 
 .menu--list-item a {
     overflow: hidden;
     display: flex;
     gap: 5px;
     font-weight: bold;
-    color: #000;
+    color: inherit;
     text-align: left;
+    transition: all 0.3s ease-in;
+}
+
+.menu--list-item a.active ,
+.menu--list-item a:hover {
+    color: inherit;
 }

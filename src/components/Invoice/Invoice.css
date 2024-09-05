@@ -137,3 +137,32 @@ h2 {
     background-color: #5a6268;
 }
 
+.filtered-users-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* .filtered-users {
+    position: absolute;
+    top: -10px;
+    z-index: 100;
+    width: 100%;
+    max-width: 300px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: antiquewhite;
+
+}
+
+.filtered-users {
+    padding: 5px;
+    margin-bottom: 5px;
+    font: 5rem;
+} */
+
+
+.auto-compete-group{
+    max-width: 300px;
+    margin: 0 auto;
+}

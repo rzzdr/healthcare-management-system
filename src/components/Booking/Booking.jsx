@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import './Booking.css'
 import {auth} from "../Sign-In/firebaseConfig.js";
+import AutoCompeteId from '../includes/AutoCompeteId.jsx';
 
 const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
 
@@ -88,14 +89,16 @@ function Booking() {
       <div className="conatiner">
         <h1>BOOK TEST/APPOINTMENT</h1>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="customer_map_id">Customer ID*</label>
+          {/* <label htmlFor="customer_map_id">Customer ID*</label>
           <input
             type="text"
             placeholder="Enter Customer ID"
             name="customer_map_id"
             onChange={(e) => handleChanges(e)}
             required
-          />
+          /> */}
+
+          <AutoCompeteId setSelectedId={(id) => setValues({...values, customer_map_id: id})} />
 
           <label htmlFor="date">Date*</label>
           <input
