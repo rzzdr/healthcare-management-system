@@ -83,7 +83,8 @@ const Chatbot = () => {
     const handleSendMessage = async (e) => {
         e.preventDefault();
         if (input.trim()) {
-            setMessages([...messages, { text: input, user: true }]);
+            
+            setMessages([...messages, { text: input.replace(/\n/g, '<br>'), user: true }]);
 
 
             setInput('');
