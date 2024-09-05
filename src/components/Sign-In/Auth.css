@@ -1,76 +1,104 @@
-.auth-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.signin-page {
+  background-image: url("SignInBg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.9;
 }
 
 h2 {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.auth-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-group {
-    margin-bottom: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  border: 3px solid #382222;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .btn {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .btn-primary {
-    background-color: #007bff;
-    color: white;
+  background-color: #007bff;
+  color: white;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .btn-google {
-    background-color: #db4437;
-    color: white;
+  background-color: #db4437;
+  color: white;
 }
 
 .btn-google:hover {
-    background-color: #c13524;
+  background-color: #c13524;
 }
 
 .redirect {
-    text-align: center;
-    margin-top: 10px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .link {
-    color: #007bff;
-    cursor: pointer;
+  color: #007bff;
+  cursor: pointer;
 }
 
 .link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .divider {
-    text-align: center;
-    margin: 10px 0;
-    color: #666;
+  text-align: center;
+  margin: 10px 0;
+  color: #666;
 }
