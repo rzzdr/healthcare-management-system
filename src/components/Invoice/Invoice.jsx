@@ -174,7 +174,7 @@ const Invoice = () => {
               /> */}
 
 <div className="auto-compete-group">
-                <AutoCompeteId setSelectedId={setCustomerId} />
+                <AutoCompeteId setSelectedId={setCustomerId} label="Customer ID" placeholder="Search for Customer ID" />
               </div>
               {/* <datalist id="users">
                 {filteredUserList.map((user) => (

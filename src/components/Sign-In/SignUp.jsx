@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { auth } from "./firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./Auth.css";
+import { useNavigate } from "react-router-dom";
+
 
 const BASE_URL =
   "https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io";
@@ -9,6 +11,7 @@ const BASE_URL =
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+    const navigate = useNavigate();
   const [name, setName] = useState("");
 
   const handleSubmit = (e) => {
@@ -28,6 +31,8 @@ const SignUp = () => {
           },
           body: JSON.stringify(data),
         });
+
+                navigate("/");
         navigate("/");
       })
       .catch((error) => {

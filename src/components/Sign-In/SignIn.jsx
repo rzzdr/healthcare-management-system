@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, } from "firebase/auth";
+import Reat, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "./firebaseConfig";
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
 import "./Auth.css";
+import { auth } from "./firebaseConfig";
 import googleLogo from "./google.png";
 
 const BASE_URL =
