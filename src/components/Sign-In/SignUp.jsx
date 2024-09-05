@@ -2,12 +2,15 @@ import React, {useState} from "react";
 import {auth} from "./firebaseConfig";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import "./Auth.css";
+import { useNavigate } from "react-router-dom";
+
 
 const BASE_URL = 'https://sih-internal-ps.yellowbush-cadc3844.centralindia.azurecontainerapps.io';
 
 const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,6 +29,8 @@ const SignUp = () => {
                     },
                     body: JSON.stringify(data),
                 });
+
+                navigate("/");
             })
             .catch((error) => {
                 console.error("Error during Sign Up:", error);
