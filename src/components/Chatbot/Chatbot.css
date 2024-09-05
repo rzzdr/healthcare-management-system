@@ -89,3 +89,13 @@
         height: 70vh;
     }
 }
+
+
+.chatbot-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    resize: none;
+}

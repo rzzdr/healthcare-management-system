@@ -1,6 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {marked} from 'marked';
+import React, { useEffect, useRef, useState } from 'react';
+import { marked, use } from 'marked';
 import './Chatbot.css';
+import AutoCompeteId from '../includes/AutoCompeteId';
 
 // import axios from 'axios';
 import api from '../../utils/api';
@@ -28,26 +29,46 @@ import { auth } from '../Sign-In/firebaseConfig';
 
 
 const Chatbot = () => {
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([{
+        text: 'Hello! Please enter your Customer ID to get started.',
+        user: false,
+    }]);
     const [input, setInput] = useState('');
     const [summary, setSummary] = useState('');
     const [loading, setLoading] = useState(true);
+    const [disabled, setDisabled] = useState(false);
+    const [idInput, setIdInput] = useState('');
+    const [userid, setUserid] = useState('');
+    const [error, setError] = useState('');
 
-    const chatBox  = useRef(null);
+    const chatBox = useRef(null);
 
-    const userUid = auth?.currentUser?.uid;
-    console.log(userUid);
+    // const userUid = auth?.currentUser?.uid;
+    // console.log(userUid);
+
+
+    const handelStartMessage = (e) => {
+        e.preventDefault();
+        console.log(idInput.length);
+        if (idInput.trim() && idInput.length === 36) {
+            setMessages([...messages, { text: idInput, user: true }]);
+            setDisabled(true);
+            setUserid(idInput);
+        }
+    }
+
 
     useEffect(() => {
         async function fetchUserSummary() {
             try {
                 setLoading(true);
-                const response = await api.get(`/customers/${"1cf8140a-8e64-43c3-af30-874ccac4984c"}/get-ai-summary/`);
+                const response = await api.get(`/customers/${userid}/get-ai-summary/`);
                 console.log(response.data);
                 setSummary(response.data.answer);
                 setMessages((prevMessages) => [
-                    {text: response.data.answer, user: false},
-                    {text: 'How can I help you today?', user: false},
+                    ...prevMessages,
+                    { text: response.data.answer, user: false },
+                    { text: 'How can I help you today?', user: false },
                 ]);
 
             } catch (error) {
@@ -58,25 +79,25 @@ const Chatbot = () => {
         }
 
         fetchUserSummary();
-    }, [userUid]);
-  const handleSendMessage = async (e) => {
+    }, [userid]);
+    const handleSendMessage = async (e) => {
         e.preventDefault();
         if (input.trim()) {
-            setMessages([...messages, {text: input, user: true}]);
+            setMessages([...messages, { text: input, user: true }]);
 
 
             setInput('');
 
             try {
                 setLoading(true);
-                const response = await api.post('/customers/${"1cf8140a-8e64-43c3-af30-874ccac4984c"}/get-ai-message/', {
+                const response = await api.post(`/customers/${userid}/get-ai-message/`, {
                     question: input,
                     summary: summary,
                 });
                 console.log(response.data);
                 setMessages((prevMessages) => [
                     ...prevMessages,
-                    {text: response.data.answer, user: false},
+                    { text: response.data.answer, user: false },
                 ]);
             } catch (error) {
                 console.error(error);
@@ -105,7 +126,7 @@ const Chatbot = () => {
             <div className="chatbot-messages" ref={chatBox}>
                 {messages.map((msg, index) => (
                     <div key={index} className={msg.user ? 'message user-message' : 'message bot-message'}>
-                        <div dangerouslySetInnerHTML={{__html: marked(msg.text)}}/>
+                        <div dangerouslySetInnerHTML={{ __html: marked(msg.text) }} />
                     </div>
                 ))}
 
@@ -115,15 +136,33 @@ const Chatbot = () => {
                     </div>
                 )}
             </div>
-            <form onSubmit={handleSendMessage} className="chatbot-input-form">
-                <input
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Type a message..."
-                />
-                <button type="submit">Send</button>
-            </form>
+
+
+            {
+                disabled ? (
+                    <form onSubmit={handleSendMessage} className="chatbot-input-form">
+                        {/* <input
+                        type="text"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        placeholder="Type a message..."
+                    /> */}
+                        <textarea
+                            value={input}
+                            className='chatbot-textarea'
+                            onChange={(e) => setInput(e.target.value)}
+                            placeholder="Type a message..."
+                        />
+                        <button type="submit">Send</button>
+                    </form>
+                ) : (
+                    <form onSubmit={handelStartMessage} className="chatbot-input-form">
+                        <AutoCompeteId setSelectedId={setIdInput} label="" placeholder="Search for Customer ID" />
+                        <button type="submit">Start</button>
+                    </form>
+                )
+            }
+
         </div>
     );
 };

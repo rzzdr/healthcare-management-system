@@ -98,7 +98,7 @@ function Booking() {
             required
           /> */}
 
-          <AutoCompeteId setSelectedId={(id) => setValues({...values, customer_map_id: id})} />
+          <AutoCompeteId setSelectedId={(id) => setValues({...values, customer_map_id: id})} label="Customer ID" placeholder="Search for Customer ID" />
 
           <label htmlFor="date">Date*</label>
           <input

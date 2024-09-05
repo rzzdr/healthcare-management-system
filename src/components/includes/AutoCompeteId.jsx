@@ -6,7 +6,7 @@ import 'react-datalist-input/dist/styles.css';
 import api from "../../utils/api";
 import "./AutoCompeteId.css";
 
-const AutoCompeteId = ({ setSelectedId }) => {
+const AutoCompeteId = ({ setSelectedId , label, placeholder }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -27,8 +27,8 @@ const AutoCompeteId = ({ setSelectedId }) => {
     return (
 
             <DatalistInput
-                label="Search for Customer ID"
-                placeholder="Search for Customer ID"
+                label= {label}
+                placeholder={placeholder}
                 className="auto-compete-group"
                 items={
                     data.map((item) => ({
