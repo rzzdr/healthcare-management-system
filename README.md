@@ -56,5 +56,5 @@ Follow these steps to run the project locally
    ```bash
    git clone https://github.com/rzzdr/healthcare-management-system
    cd healthcare-management-system
-   npm run dev #(npm should be installed)
+   npm run dev #(npm should be installed, react and vite should also be install via npm)
    ```
